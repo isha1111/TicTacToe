@@ -16,6 +16,25 @@ drawMatrix();
 var profileInfo = 0;
 var colourStorage;
 var backgroundColour;
+var squares = document.getElementById('heading');
+
+// function expression
+var randomRGB = function () {
+  return Math.floor(Math.random() * (255 - 0));
+}
+
+var rave = function() {
+  setInterval(function() {
+    
+      var fillColor = 'rgb(' + randomRGB() + ',' + randomRGB() + ',' + randomRGB() + ')'
+      squares.style.fill = fillColor;
+    
+
+    squares.style.backgroundColor = 'rgb(' + randomRGB() + ',' + randomRGB() + ',' + randomRGB() + ')';
+  }, 1000);
+}
+rave();
+
 //console.log(document.body.style.backgroundColor);
 //var backgroundColourStorage;
 if(profileInfo === 0) {
