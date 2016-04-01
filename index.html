@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<title></title>
+</head>
+<body>
+<p id="click" title = "click to start">Click </p> <blink>to add Timer to Game</blink>
+<!-- <div id = "container"> -->
+<p id="heading">Tic Tac Toe</p>
+<div id = "info">
+<button id = "profileBtn">Profile</button>
+<span id="profileInfo"></span>
+</div>
+<span id="time"></span>	
+<span id = "playerTurn"></span>
+<div id = "topBar">
+<div id = "choosePlayers">
+<a title = "Choose Players">Choose no. of Players</a>
+<select id = "players" onchange="choosePlayers()">
+	<option id = "1Player" value="1">1 Player</option>
+	<option id = "2Player" value="2">2 Player</option>
+</select>
+</div>
+
+<div id="btnBar">
+<label>Choose Your Move </label>
+<button id = "X" onclick="checkBtn(event)">X</button>
+<button id = "O" onclick="checkBtn(event)">O</button>
+</div>
+
+<div id = "matrixSize">
+<label>Matrix size </label><select id = "rows" onchange="chooseMatrixSize()">
+	<option>3</option>
+	<option>4</option>
+	<option>5</option>
+</select>
+</div>
+</div>
+<div id = "result">
+<span id=resultSpan></span></div>
+<!-- Dynamically creating table from app.js -->
+<div id = "matrix">
+	<!-- <table id="matrix"></table> -->
+</div>
+<div id = "bottomBar">
+	<button id="newGame" onclick="reload()">Play Again</button>
+</div>
+<div id=winBar>
+<label id = "p1Label">Player 1 wins > </label><span id = "p1Span"></span>
+<label id = "p2Label">Player 2 wins > </label><span id = "p2Span"></span>
+<button id = "resetScore" value="ResetScore">Reset Score</button>
+</div>
+</div>
+
+<div id = "profile">
+<table id="profileTable"><tr>
+  <td>First name:</td> <td> <input type="text" id="name"></br></tr>
+  
+  <tr><td>Background: </td><td><select id="bgColor">
+    <option value="black">Default</option>
+  	<option value="gray">Gray</option>
+  	<option value="blue">Blue</option>
+  	<option value="pink">pink</option>
+  </select></td></tr>
+  </table>
+  <input type="submit" value="Submit" id="submitBtn">
+
+</div>
+<script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>
