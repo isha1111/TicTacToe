@@ -11,6 +11,7 @@ body {
 	color: white;
 	font-weight: bold;
 	border-radius: 20px;
+	transition: all 1s ease;
 }
 #winBar {
 	display: block;
@@ -24,7 +25,6 @@ body {
 	display: inline-block;
 	color: red;
 	cursor: pointer;
-
 }
 #profileBtn {
 	display: inline-block;
@@ -56,6 +56,14 @@ body {
 	margin-right: 100px;
 	border-radius: 20px;
 }	
+#btnBar:hover, #choosePlayers:hover, #matrixSize:hover {
+	background-color: red;
+}
+#btnBar, #choosePlayers, #matrixSize {
+	transition: all 1s ease;
+}
+
+
 #profile {
 	display: block;
 	padding-top: 50px;
@@ -85,9 +93,15 @@ body {
 	margin: 25px;
 	display: block;
 	text-align: right;
+	transition: all 1s ease;
 }
 #newTable {
 	margin: 0 auto;
+	transition: all 1s ease;
+}
+#matrix {
+	width: auto;
+	transition: all 1.5s ease;
 }
 #bottomBar {
 	display: block;
@@ -114,4 +128,40 @@ body {
 #profileTable {
 	display: block;
 	margin-left: 50%;
+}
+
+@media(max-width: 650px) {
+	#choosePlayers {
+		display: block;
+		text-align: center;
+		border: none;
+		margin: 0 auto;
+	}
+	#matrixSize {
+		display: block;
+		border: none;
+		text-align: center;
+	}
+	#btnBar {
+		display: block;
+		border: none;
+		margin: 0 auto;
+	}
+	#tbody {
+		transform: scale(.8);
+
+	}
+	#newTable {
+		transform: scale(.9);
+		padding: 0;
+	}
+	#heading {
+		transform: scale(.9);
+
+	}
+}
+@media(max-width: 720px) {
+	#choosePlayers, #btnBar {
+		margin-right: 0;
+	}
 }

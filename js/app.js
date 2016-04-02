@@ -2,7 +2,6 @@ var selectedOption = 'X';
 var nonSelectedOption = 'O';
 var noOfRows = document.getElementById('rows');
 var arrayOfMartixCells = [];
-var arrayOfUsedMatrixCells = [];
 var winFlag = 0 ;
 var counter = 0;
 var timer = 60;
@@ -26,10 +25,8 @@ var randomRGB = function () {
 var rave = function() {
   setInterval(function() {
     
-      var fillColor = 'rgb(' + randomRGB() + ',' + randomRGB() + ',' + randomRGB() + ')'
-      squares.style.fill = fillColor;
-    
-
+    var fillColor = 'rgb(' + randomRGB() + ',' + randomRGB() + ',' + randomRGB() + ')'
+    squares.style.fill = fillColor;    
     squares.style.backgroundColor = 'rgb(' + randomRGB() + ',' + randomRGB() + ',' + randomRGB() + ')';
   }, 1000);
 }
@@ -40,7 +37,7 @@ rave();
 if(profileInfo === 0) {
 	document.getElementById('profile').style.display = "none";
 }
-if(document.body.style.backgroundColor === "") {
+if(localStorage.getItem('backgroundColourStorage') === "") {
 	localStorage.setItem('backgroundColourStorage',"black");
 	var color = localStorage.getItem('backgroundColourStorage');
 	document.body.style.backgroundColor = color;
@@ -161,6 +158,7 @@ function drawMatrix() {
 	// table.style.border = "1px solid white";
 
 	var tableBody = document.createElement('TBODY');
+	tableBody.id = "tbody";
 	table.appendChild(tableBody);
 	table.id = "newTable"; // giving id to table
 	table.style.border = "2px solid white"; // styling table
@@ -208,6 +206,8 @@ function choosePlayers() {
 	}
 	document.getElementById('resultSpan').innerHTML = "";
 	console.log("choosePlayers "+noOfPlayers);
+	clearMatrix();
+	drawMatrix();
 }
 
 // this functin is called for single player
@@ -246,7 +246,7 @@ else {
 		timer = 10; //reseting timer
 		document.getElementById('playerTurn').innerHTML = "waiting... for computer";
 		document.getElementById('matrix').style.pointerEvents = 'none';
-		setTimeout(function() { compMove(); }, 2000); // calling computer to play
+		setTimeout(function() { compMove(); }, 1000); // calling computer to play
 		console.log("");
 		
 	}
