@@ -20,7 +20,7 @@ play Again - resets game and all other options
 Reset Scores - reset scores 
 Player wins - shows the no of times a player has won
 
-link for the game - http://isha1111.github.io/Tic-Tac-Toe/
+link for the game - http://isha1111.github.io/TicTacToe/
 
 unsolved problem - on clicking play agin players name and background is getting reset. Need to fix that.
 
