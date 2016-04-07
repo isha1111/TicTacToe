@@ -48,7 +48,7 @@ if(localStorage.getItem('backgroundColourStorage') === "") {
 	localStorage.setItem('backgroundColourStorage',"white");
 	var color = localStorage.getItem('backgroundColourStorage');
 	document.body.style.backgroundColor = color;
-} //else set default background as black if no local storage
+} //else set default background as white if no local storage
 else if(localStorage.getItem('backgroundColourStorage') !== "") {
 	var colour = localStorage.getItem('backgroundColourStorage');
 	document.body.style.backgroundColor = colour;
