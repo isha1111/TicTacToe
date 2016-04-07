@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<title></title>
 </head>
@@ -10,7 +12,7 @@
 <!-- <div id = "container"> -->
 <p id="heading">Tic Tac Toe</p>
 <div id = "info">
-<button id = "profileBtn">Profile</button>
+<button id = "profileBtn">Player Profile</button>
 <span id="profileInfo"></span>
 </div>
 <span id="time"></span>	
@@ -23,7 +25,6 @@
 	<option id = "2Player" value="2">2 Player</option>
 </select>
 </div>
-
 <div id="btnBar">
 <label>Choose Your Move </label>
 <button id = "X" onclick="checkBtn(event)">X</button>
@@ -39,17 +40,17 @@
 </div>
 </div>
 <div id = "result">
-<span id=resultSpan></span></div>
+<span id="closeSpan">x</span>
+<span id=resultSpan></span>
+</div>
 <!-- Dynamically creating table from app.js -->
 <div id = "matrix">
 	<!-- <table id="matrix"></table> -->
 </div>
-<div id = "bottomBar">
-	<button id="newGame" onclick="reload()">Play Again</button>
-</div>
+
 <div id=winBar>
-<label id = "p1Label">Player 1 wins > </label><span id = "p1Span"></span>
-<label id = "p2Label">Player 2 wins > </label><span id = "p2Span"></span>
+<div  id="P1Div"><label id = "p1Label">Player 1 wins > </label><span id = "p1Span"></span></div>
+<div  id="P2Div"><label id = "p2Label">Player 2 wins > </label><span id = "p2Span"></span></div>
 <button id = "resetScore" value="ResetScore">Reset Score</button>
 </div>
 </div>
@@ -59,7 +60,7 @@
   <td>First name:</td> <td> <input type="text" id="name"></br></tr>
   
   <tr><td>Background: </td><td><select id="bgColor">
-    <option value="black">Default</option>
+    <option value="white">Default</option>
   	<option value="gray">Gray</option>
   	<option value="blue">Blue</option>
   	<option value="pink">pink</option>
