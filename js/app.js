@@ -22,16 +22,6 @@ var randomRGB = function () {
   return Math.floor(Math.random() * (235));
 }
 
-var rave = function() {
-  setInterval(function() {
-    
-    var fillColor = 'rgb(' + randomRGB() + ',' + randomRGB() + ',' + randomRGB() + ')'
-    squares.style.fill = fillColor; 
-    squares.style.backgroundColor = 'rgb(' + randomRGB() + ',' + randomRGB() + ',' + randomRGB() + ')';
-  }, 800);
-}
-//rave();// change background color randomly for heading
-
 if(winFlag !== 1){
 	document.getElementById('result').style.display = 'none'; //hides modal
 }
