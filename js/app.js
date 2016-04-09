@@ -30,7 +30,7 @@ var rave = function() {
     squares.style.backgroundColor = 'rgb(' + randomRGB() + ',' + randomRGB() + ',' + randomRGB() + ')';
   }, 800);
 }
-rave();// change background color randomly for heading
+//rave();// change background color randomly for heading
 
 if(winFlag !== 1){
 	document.getElementById('result').style.display = 'none'; //hides modal
@@ -74,6 +74,7 @@ document.getElementById('resetScore').addEventListener("click",function () {
 if(winFlag !== 1) {
 document.getElementById('click').addEventListener('click',function() {
 document.getElementById('matrix').style.pointerEvents = 'auto';
+document.getElementById('topBar').style.pointerEvents = 'auto';
 	intervalId = setInterval(function() { timer--; 
 		if(timer === 0) {
 			alert("Time Out");
@@ -212,21 +213,27 @@ var noOfPlayers = dropdown.options[dropdown.selectedIndex].value;
 
 // this function accepts the user input of no of players and stores in a variable
 function choosePlayers() {
+	console.log('finnaly m called');
 	winFlag = 0;
-	
+	counter = 0;
 	var noOfPlayers = dropdown.options[dropdown.selectedIndex].value;
-	for(var i=0; i<arrayOfMartixCells.length; i++){
-		arrayOfMartixCells[i].innerHTML = "";
-		arrayOfMartixCells[i].style.backgroundColor = "white";
-	}
+	// for(var i=0; i<arrayOfMartixCells.length; i++){
+	// 	arrayOfMartixCells[i].innerHTML = "";
+	// 	arrayOfMartixCells[i].style.backgroundColor = "white";
+	// }
 	document.getElementById('resultSpan').innerHTML = "";
-	console.log("choosePlayers "+noOfPlayers);
 	clearMatrix();
+	console.log("drawn matrix")
 	drawMatrix();
+	move();	
 }
 
 // this functin is called for single player
 var playerMove1 = function(event){
+	if(selectedOption === "O"){
+	nonSelectedOption = "X";
+	}
+	console.log(counter);
 if((event.target.tagName === 'TD') && (event.target.innerHTML === "")) {
 	console.log(event.target.innerHTML)
 var usedCellId  = event.target ;
@@ -241,25 +248,28 @@ checkWinPlayer(); // checking win
 if(winFlag === 1) {
 	clearInterval(intervalId); 
 	document.getElementById('matrix').style.pointerEvents = 'none';
+	document.getElementById('topBar').style.pointerEvents = 'none';
 	document.getElementById('playerTurn').innerHTML = "";
 	document.getElementById('time').innerHTML = "";
 	document.getElementById('result').style.display = 'auto';
 	player1Win = localStorage.getItem('player1WinStorage');
 	document.getElementById('p1Span').innerHTML = player1Win;
-	document.body.style.backgroundColor = "gray";
-	document.getElementById('result').style.backgroundColor = "white";
+	document.getElementById('result').style.backgroundColor = "tomato";
+	// document.body.style.backgroundColor = "gray";
+	document.getElementById
 }
 else {
 	checkTie(); //checking tie
 	if(winFlag === 1) {
 	clearInterval(intervalId); 
 	document.getElementById('matrix').style.pointerEvents = 'none';
+	document.getElementById('topBar').style.pointerEvents = 'none';	
 	document.getElementById('playerTurn').innerHTML = "";
 	document.getElementById('time').innerHTML = "";
 	player2Win = localStorage.getItem('player1WinStorage');
 	$('p1Span').html(player1Win);
-	document.body.style.backgroundColor = "gray";
-	document.getElementById('result').style.backgroundColor = "white";
+	document.getElementById('result').style.backgroundColor = "tomato";
+	// document.body.style.backgroundColor = "gray";
 
 }
 	if(noOfPlayers === "1") {
@@ -272,6 +282,7 @@ else {
 	}
 	else
 	{
+		counter ++;
 		timer = 10;
 		document.getElementById('playerTurn').innerHTML = "waiting... for Player 2";
 	}
@@ -279,7 +290,6 @@ else {
 
 console.log(event);
 } 
-counter ++;
 timer = 10;
 }
 // Following function is called on every click
@@ -293,6 +303,7 @@ function move() {
 
 	}
 	else if(noOfPlayers === "2") {
+		console.log(counter);
 		if(counter === 0) {
 		playerMove1(event);}
 		else if(counter === 1) {
@@ -400,8 +411,6 @@ function checkWinComp() {
 	if(matrixSize === 3) {
 	for(var i=0; i<arrayOfMartixCells.length; i++) {
 		if(arrayOfMartixCells[i].textContent !== "") {
-			console.log(arrayOfMartixCells[1].textContent);
-			
 				if( (arrayOfMartixCells[1].textContent === nonSelectedOption && arrayOfMartixCells[2].textContent === nonSelectedOption && arrayOfMartixCells[0].textContent === nonSelectedOption)||(arrayOfMartixCells[3].textContent === nonSelectedOption && arrayOfMartixCells[4].textContent === nonSelectedOption && arrayOfMartixCells[5].textContent === nonSelectedOption)|| (arrayOfMartixCells[6].textContent === nonSelectedOption && arrayOfMartixCells[7].textContent === nonSelectedOption && arrayOfMartixCells[8].textContent === nonSelectedOption)||(arrayOfMartixCells[3].textContent === nonSelectedOption && arrayOfMartixCells[6].textContent === nonSelectedOption && arrayOfMartixCells[0].textContent === nonSelectedOption)||(arrayOfMartixCells[1].textContent === nonSelectedOption && arrayOfMartixCells[4].textContent === nonSelectedOption && arrayOfMartixCells[7].textContent === nonSelectedOption)
 					){
 					
@@ -522,12 +531,14 @@ function playerMove2(event) {
 		checkTie(); // checking tie
 		if(winFlag === 1) { 
 			document.getElementById('matrix').style.pointerEvents = 'none';
+			document.getElementById('topBar').style.pointerEvents = 'none';
 			document.getElementById('playerTurn').innerHTML = "";
 			clearInterval(intervalId);
 			document.getElementById('time').innerHTML = "";
 			player2Win = localStorage.getItem('player2WinStorage');
 			document.getElementById('p2Span').innerHTML = player2Win;
-			document.body.style.backgroundColor = "gray";
+			document.getElementById('result').style.backgroundColor = "tomato";			
+			//document.body.style.backgroundColor = "gray";
 		}
 		else {
 			document.getElementById('playerTurn').innerHTML = "waiting... for Player 1";
@@ -543,11 +554,20 @@ if(selectedOption === "O"){
 	nonSelectedOption = "X";
 }
 	for(var i=0; i<arrayOfMartixCells.length; i++) {
-		var chooseCell = Math.floor(Math.random() * arrayOfMartixCells.length);
+
+
+		var chooseCell;
+		chooseCell = Math.floor(Math.random() * arrayOfMartixCells.length);
+		///////////////////////////////////////////////////////////////////////
+
+
+
+		////////////////////////////////////////////////////////////////////////
 		if((arrayOfMartixCells[chooseCell].style.backgroundColor !== "tomato") && (arrayOfMartixCells[chooseCell].innerHTML === ""))
 		{
 			var p = document.createElement('P');
 			p.textContent = nonSelectedOption;
+			console.log(chooseCell);
 			arrayOfMartixCells[chooseCell].appendChild(p);
 			arrayOfMartixCells[chooseCell].style.backgroundColor = "tomato";
 			arrayOfMartixCells[chooseCell].style.textAlign = "center";
@@ -555,21 +575,28 @@ if(selectedOption === "O"){
 			checkTie(); // checking tie
 			if(winFlag === 1) {
 				document.getElementById('matrix').style.pointerEvents = 'none';
+				document.getElementById('topBar').style.pointerEvents = 'none';
 				document.getElementById('playerTurn').innerHTML = "";
 				document.getElementById('time').innerHTML = "";
 				player2Win = localStorage.getItem('player2WinStorage');
 				document.getElementById('p2Span').innerHTML = player2Win;
-				document.body.style.backgroundColor = "gray";
 				clearInterval(intervalId);
+				document.getElementById('result').style.backgroundColor = "tomato";
+				// document.body.style.backgroundColor = "gray";
+
+
 			}
 			else {
 				document.getElementById('playerTurn').innerHTML = "waiting... for Player 1";
 			}
 			break;
 		}
-	}if(winFlag !== 1) {
-	document.getElementById('matrix').style.pointerEvents = 'auto';
 	}
+	if(winFlag !== 1) {
+	document.getElementById('matrix').style.pointerEvents = 'auto';
+	document.getElementById('topBar').style.pointerEvents = 'auto';	
+	}
+	counter --;
 	timer = 10;
 }
 if(counter === 1){
